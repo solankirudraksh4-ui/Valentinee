@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Moment 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+padding:40px 20px;
+background:#fff0f6;
+font-family:'Sacramento',cursive;
+text-align:center;
+overflow:hidden;
+}
+
+h2{
+font-size:2.6rem;
+color:#ff5d8f;
+margin-bottom:10px;
+}
+
+/* heart image */
+.heart{
+width:min(260px,70vw);
+aspect-ratio:1;
+margin:50px auto 20px;
+background:url('heart.jpg') center/cover no-repeat;
+
+/* heart mask (mobile safe) */
+mask:url('https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg') center/contain no-repeat;
+-webkit-mask:url('https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg') center/contain no-repeat;
+
+animation:heartbeat 2.6s infinite ease-in-out;
+}
+
+@keyframes heartbeat{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.05);}
+}
+
+/* glitter */
+.sparkle{
+position:fixed;
+font-size:1.2rem;
+pointer-events:none;
+animation:fall 1.6s forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(200px) rotate(360deg);
+opacity:0;
+}
+}
+
+/* ending line */
+.ending-line{
+margin-top:30px;
+font-size:1.6rem;
+opacity:0;
+animation:fadeInSoft 2s ease forwards;
+animation-delay:1.8s;
+}
+
+@keyframes fadeInSoft{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+</style>
+</head>
+
+<body>
+
+<h2>Our Moment 💗</h2>
+
+<div class="heart"></div>
+
+<p class="ending-line">
+If you’re smiling right now, that’s all I wanted.
+</p>
+
+<script>
+/* glitter on load */
+const sparkleCount = window.innerWidth < 600 ? 18 : 26;
+
+for(let i=0;i<sparkleCount;i++){
+setTimeout(()=>{
+const s=document.createElement("div");
+s.className="sparkle";
+s.textContent="✨";
+s.style.left=Math.random()*100+"vw";
+s.style.top="40vh";
+document.body.appendChild(s);
+
+setTimeout(()=>s.remove(),1600);
+},i*80);
+}
+</script>
+
+</body>
+</html>
