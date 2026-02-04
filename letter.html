@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+padding:40px;
+background:#fff0f6;
+font-family:'Sacramento',cursive;
+text-align:center;
+}
+
+button{
+font-family:'Sacramento',cursive;
+font-size:1.3rem;
+padding:10px 25px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+margin-bottom:20px;
+}
+
+/* envelope */
+.envelope{
+width:300px;
+height:200px;
+margin:40px auto;
+background:#fff;
+border-radius:10px;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
+position:relative;
+overflow:hidden;
+cursor:pointer;
+}
+
+.flap{
+position:absolute;
+top:0;
+width:100%;
+height:50%;
+background:#ff8fab;
+clip-path:polygon(0 0,100% 0,50% 100%);
+transform-origin:top;
+transition:.8s;
+}
+
+.envelope.open .flap{
+transform:rotateX(180deg);
+}
+
+.paper{
+position:absolute;
+bottom:-100%;
+width:100%;
+height:100%;
+background:#fff;
+padding:30px;
+transition:1s;
+}
+
+.envelope.open .paper{
+bottom:0;
+}
+
+#text{
+font-size:1.5rem;
+line-height:1.8;
+white-space:pre-line;
+}
+
+#next{
+display:none;
+margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<button onclick="toggleMusic()">🎵 music</button>
+<audio id="bgMusic" loop>
+<source src="mm.mp3" type="audio/mpeg">
+</audio>
+
+<h2>Dear Chutlu 💌</h2>
+
+<div class="envelope" onclick="openLetter()">
+  <div class="flap"></div>
+  <div class="paper">
+    <div id="text"></div>
+  </div>
+</div>
+
+<button id="next" onclick="location.href='moment.html'">
+Our Moment 💗
+</button>
+
+<script>
+const music=document.getElementById("bgMusic");
+function toggleMusic(){
+music.volume=.25;
+music.paused?music.play():music.pause();
+}
+
+const letter=`I don’t really know the perfect way to start this,
+but I wanted to write this myself.
+
+Even from miles away, talking to you feels easy.
+It’s comforting. Familiar.
+
+I care about you — genuinely.
+And choosing you, even from a distance, feels right.
+
+— Rakshh ❤️`;
+
+let i=0, started=false;
+
+function openLetter(){
+if(started) return;
+started=true;
+document.querySelector(".envelope").classList.add("open");
+
+const box=document.getElementById("text");
+const timer=setInterval(()=>{
+box.innerHTML+=letter[i];
+i++;
+if(i>=letter.length){
+clearInterval(timer);
+document.getElementById("next").style.display="inline-block";
+}
+},45);
+}
+</script>
+
+</body>
+</html>
