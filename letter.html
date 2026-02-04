@@ -10,12 +10,13 @@
 <style>
 body{
 margin:0;
-padding:40px;
+padding:40px 20px;
 background:#fff0f6;
 font-family:'Sacramento',cursive;
 text-align:center;
 }
 
+/* music button */
 button{
 font-family:'Sacramento',cursive;
 font-size:1.3rem;
@@ -29,16 +30,16 @@ margin-bottom:20px;
 /* envelope */
 .envelope{
 width:300px;
-height:200px;
+max-width:90vw;
 margin:40px auto;
 background:#fff;
-border-radius:10px;
+border-radius:12px;
 box-shadow:0 15px 40px rgba(0,0,0,.2);
 position:relative;
 overflow:hidden;
-cursor:pointer;
 }
 
+/* flap */
 .flap{
 position:absolute;
 top:0;
@@ -54,26 +55,60 @@ transition:.8s;
 transform:rotateX(180deg);
 }
 
-.paper{
+/* heart seal */
+.seal{
 position:absolute;
-bottom:-100%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:55px;
+height:55px;
+background:#ff5d8f;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:1.6rem;
+color:white;
+cursor:pointer;
+z-index:5;
+box-shadow:0 5px 15px rgba(0,0,0,.25);
+animation:sealBeat 1.2s ease-out;
+}
+
+@keyframes sealBeat{
+0%{transform:translate(-50%,-50%) scale(1);}
+40%{transform:translate(-50%,-50%) scale(1.2);}
+70%{transform:translate(-50%,-50%) scale(0.95);}
+100%{transform:translate(-50%,-50%) scale(1);}
+}
+
+.envelope.open .seal{
+display:none;
+}
+
+/* paper */
+.paper{
+position:relative;
 width:100%;
-height:100%;
 background:#fff;
 padding:30px;
-transition:1s;
+transform:translateY(100%);
+transition:transform 1s ease;
 }
 
 .envelope.open .paper{
-bottom:0;
+transform:translateY(0);
 }
 
 #text{
 font-size:1.5rem;
-line-height:1.8;
+line-height:1.9;
 white-space:pre-line;
+word-wrap:break-word;
 }
 
+/* next button */
 #next{
 display:none;
 margin-top:30px;
@@ -85,13 +120,14 @@ margin-top:30px;
 
 <button onclick="toggleMusic()">🎵 music</button>
 <audio id="bgMusic" loop>
-<source src="mm.mp3" type="audio/mpeg">
+  <source src="mm.mp3" type="audio/mpeg">
 </audio>
 
 <h2>Dear Chutlu 💌</h2>
 
-<div class="envelope" onclick="openLetter()">
+<div class="envelope">
   <div class="flap"></div>
+  <div class="seal" onclick="openLetter()">❤️</div>
   <div class="paper">
     <div id="text"></div>
   </div>
@@ -124,6 +160,7 @@ let i=0, started=false;
 function openLetter(){
 if(started) return;
 started=true;
+
 document.querySelector(".envelope").classList.add("open");
 
 const box=document.getElementById("text");
