@@ -23,18 +23,44 @@ color:#ff5d8f;
 margin-bottom:10px;
 }
 
-/* heart image */
+/* heart */
 .heart{
-width:min(260px,70vw);
+position:relative;
+width:min(280px,75vw);
 aspect-ratio:1;
 margin:50px auto 20px;
-background:url('heart.jpg') center/cover no-repeat;
 
-/* heart mask (mobile safe) */
+/* image positioning */
+background-image:url('heart.jpg');
+background-repeat:no-repeat;
+background-size:110%;
+background-position:50% 30%;
+
+/* heart mask */
 mask:url('https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg') center/contain no-repeat;
 -webkit-mask:url('https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg') center/contain no-repeat;
 
-animation:heartbeat 2.6s infinite ease-in-out;
+/* glow */
+box-shadow:
+0 0 25px rgba(255,93,143,0.35),
+0 0 50px rgba(255,93,143,0.2);
+
+animation:heartbeat 2.6s infinite ease-in-out, glowPulse 2.6s infinite ease-in-out;
+}
+
+/* vignette */
+.heart::after{
+content:"";
+position:absolute;
+inset:0;
+background:radial-gradient(
+circle at center,
+rgba(0,0,0,0) 55%,
+rgba(0,0,0,0.25) 100%
+);
+pointer-events:none;
+mask:inherit;
+-webkit-mask:inherit;
 }
 
 @keyframes heartbeat{
@@ -42,18 +68,16 @@ animation:heartbeat 2.6s infinite ease-in-out;
 50%{transform:scale(1.05);}
 }
 
-/* glitter */
-.sparkle{
-position:fixed;
-font-size:1.2rem;
-pointer-events:none;
-animation:fall 1.6s forwards;
+@keyframes glowPulse{
+0%,100%{
+box-shadow:
+0 0 25px rgba(255,93,143,0.35),
+0 0 50px rgba(255,93,143,0.2);
 }
-
-@keyframes fall{
-to{
-transform:translateY(200px) rotate(360deg);
-opacity:0;
+50%{
+box-shadow:
+0 0 35px rgba(255,93,143,0.5),
+0 0 70px rgba(255,93,143,0.3);
 }
 }
 
@@ -67,13 +91,27 @@ animation-delay:1.8s;
 }
 
 @keyframes fadeInSoft{
-from{
-opacity:0;
-transform:translateY(10px);
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
 }
-to{
-opacity:1;
-transform:translateY(0);
+
+/* glitter */
+.sparkle{
+position:fixed;
+font-size:1.2rem;
+pointer-events:none;
+animation:fall 1.6s forwards;
+}
+
+@keyframes fall{
+to{transform:translateY(200px) rotate(360deg);opacity:0;}
+}
+
+/* mobile safety */
+@media (max-width:480px){
+.heart{
+background-size:115%;
+background-position:50% 25%;
 }
 }
 </style>
@@ -90,10 +128,8 @@ If you’re smiling right now, that’s all I wanted.
 </p>
 
 <script>
-/* glitter on load */
-const sparkleCount = window.innerWidth < 600 ? 18 : 26;
-
-for(let i=0;i<sparkleCount;i++){
+const count=window.innerWidth<600?18:26;
+for(let i=0;i<count;i++){
 setTimeout(()=>{
 const s=document.createElement("div");
 s.className="sparkle";
@@ -101,7 +137,6 @@ s.textContent="✨";
 s.style.left=Math.random()*100+"vw";
 s.style.top="40vh";
 document.body.appendChild(s);
-
 setTimeout(()=>s.remove(),1600);
 },i*80);
 }
