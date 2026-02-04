@@ -5,311 +5,89 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hey love 💗</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Righteous&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
 
 <style>
-:root{
---pink:#ff8fab;
---rose:#ff5d8f;
---soft:#fff0f6;
---text:#4a3b3b;
-}
-
-*{margin:0;padding:0;box-sizing:border-box;}
-
 body{
-font-family:'DM Sans',sans-serif;
-background:radial-gradient(circle at top,var(--soft),#ffe5ec);
-color:var(--text);
-overflow-x:hidden;
-}
-
-.container{
-max-width:900px;
-margin:auto;
-padding:20px;
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family:'Sacramento',cursive;
+background:#fff0f6;
 text-align:center;
+overflow:hidden;
 }
 
-/* ---------- HERO ---------- */
 h1{
-font-family:'Righteous';
-font-size:clamp(2.5rem,7vw,4.5rem);
-background:linear-gradient(135deg,var(--rose),var(--pink));
--webkit-background-clip:text;
-color:transparent;
-margin-top:50px;
+font-size:3rem;
+color:#ff5d8f;
 }
 
-.subtitle{
-margin:15px 0 20px;
-font-size:1.2rem;
-}
-
-/* ---------- BUTTONS ---------- */
-.btn-wrap{
+.btn-box{
 position:relative;
-height:140px;
+width:100%;
+max-width:320px;
+height:200px;
 margin-top:40px;
 }
 
 button{
+font-family:'Sacramento',cursive;
+font-size:1.6rem;
+padding:15px 40px;
 border:none;
-border-radius:60px;
-padding:18px 50px;
-font-size:1.3rem;
+border-radius:50px;
 cursor:pointer;
 }
 
 #yes{
-background:linear-gradient(135deg,var(--rose),var(--pink));
+background:#ff5d8f;
 color:white;
-transition:.3s;
+position:relative;
+z-index:2;
 }
 
 #no{
-background:#eee;
+background:#ddd;
 color:#555;
 position:absolute;
 left:50%;
-top:70px;
-}
-
-#success{
-display:none;
-margin-top:50px;
-}
-
-/* ---------- CARD ---------- */
-.card{
-background:rgba(255,255,255,.8);
-border-radius:25px;
-padding:40px;
-margin:60px 0;
-box-shadow:0 20px 50px rgba(0,0,0,.08);
-}
-
-/* ---------- ENVELOPE ---------- */
-#env{
-width:200px;
-height:130px;
-margin:auto;
-cursor:pointer;
-background:linear-gradient(135deg,var(--pink),var(--rose));
-border-radius:12px;
-}
-
-#letter{
-max-height:0;
-overflow:hidden;
-transition:1s;
-margin-top:20px;
-}
-
-/* ---------- HEART IMAGE ---------- */
-#heartContainer{
-position:relative;
-width:min(260px,70vw);
-aspect-ratio:1/1;
-margin:40px auto;
-cursor:pointer;
-}
-
-#heartShape{
-font-size:clamp(4.5rem,18vw,6rem);
-display:flex;
-align-items:center;
-justify-content:center;
-height:100%;
-animation:introPulse 1.6s ease-out;
-}
-
-@keyframes introPulse{
-0%{transform:scale(0.9);}
-50%{transform:scale(1.15);}
-100%{transform:scale(1);}
-}
-
-#heartImage{
-position:absolute;
-inset:0;
-display:none;
-clip-path:path(
-"M50 15
- C35 0 0 10 0 40
- C0 70 25 90 50 100
- C75 90 100 70 100 40
- C100 10 65 0 50 15 Z"
-);
-}
-
-#heartImage img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.heartbeat{
-animation:softBeat 2.4s infinite ease-in-out;
-}
-
-@keyframes softBeat{
-0%,100%{transform:scale(1);}
-50%{transform:scale(1.04);}
-}
-
-/* ---------- GLITTER ---------- */
-@keyframes sparkleFall{
-to{
-transform:translateY(180px) rotate(360deg);
-opacity:0;
-}
-}
-
-footer{
-margin:60px 0;
-font-size:1.1rem;
+top:120px;
+transform:translateX(-50%);
 }
 </style>
 </head>
 
 <body>
-<div class="container">
 
-<h1>Will you be my Valentine? 💗</h1>
-<p class="subtitle">Hey <b>love</b>… I have something special for you ✨</p>
+<h1>Hey love… will you be my Valentine? 💗</h1>
 
-<button id="musicBtn" style="background:rgba(255,255,255,0.7);padding:10px 22px;border-radius:20px;font-size:.95rem;">
-🎵 Tap to play a little music
-</button>
-
-<audio id="bgMusic" loop>
-  <source src="mm.mp3" type="audio/mpeg">
-</audio>
-
-<div class="btn-wrap">
-<button id="yes">YES 💖</button>
-<button id="no">No 😢</button>
-</div>
-
-<div id="success">
-<h2>You said YES 🥹💘</h2>
-<p>This just became the best day ever.</p>
-</div>
-
-<div class="card">
-<div id="env"></div>
-
-<div id="letter">
-<p style="font-style:italic;line-height:1.8;">
-<b>Dear Chutlu,</b><br><br>
-
-I don’t really know the perfect way to start this, but I know I wanted to write it myself instead of just saying it out loud.<br><br>
-
-You’ve become someone I think about without trying. It’s in the small things — when something happens and you’re the first person I want to tell, or when I catch myself smiling for no real reason.<br><br>
-
-Even from miles away, talking to you feels easy. It doesn’t matter if it’s a long conversation or just a few texts — it always feels comforting, like something familiar I look forward to.<br><br>
-
-I’m not great with big words, but I hope you know this: I care about you. Genuinely. And I like the way you exist in my life.<br><br>
-
-I don’t know where everything leads, but I do know that choosing you, even from a distance, feels right.<br><br>
-
-— <b>[Your Name]</b> ❤️
-</p>
-</div>
-</div>
-
-<h2>Our Moment 💗</h2>
-
-<div id="heartContainer">
-<div id="heartShape">💖</div>
-<div id="heartImage">
-<img src="heart.jpg" alt="our moment">
-</div>
-</div>
-
-<footer>
-<p style="font-style:italic;">If you’re smiling right now, that’s all I wanted.</p>
-Made with all my love by <b>[Your Name]</b> ❤️
-</footer>
-
+<div class="btn-box">
+  <button id="yes">YES 💘</button>
+  <button id="no">No 😔</button>
 </div>
 
 <script>
-/* music */
-const music=document.getElementById("bgMusic");
-const musicBtn=document.getElementById("musicBtn");
-musicBtn.onclick=()=>{
-if(music.paused){
-music.volume=.25;
-music.play();
-musicBtn.innerText="⏸ music playing";
-}else{
-music.pause();
-musicBtn.innerText="🎵 Tap to play a little music";
-}
-};
-
-/* no button */
+const box=document.querySelector(".btn-box");
 const no=document.getElementById("no");
-const yes=document.getElementById("yes");
-let tries=0;
-no.onmouseenter=()=>{
-tries++;
-no.style.left=Math.random()*70+"%";
-no.style.top=Math.random()*80+"px";
-yes.style.transform=`scale(${1+tries*0.15})`;
-if(tries>6)no.style.display="none";
+
+no.onmouseenter=no.ontouchstart=()=>{
+const boxRect=box.getBoundingClientRect();
+const btnRect=no.getBoundingClientRect();
+const maxX=boxRect.width-btnRect.width;
+const maxY=boxRect.height-btnRect.height;
+no.style.left=Math.random()*maxX+"px";
+no.style.top=Math.random()*maxY+"px";
 };
 
-/* yes */
-yes.onclick=()=>{
-document.getElementById("success").style.display="block";
+document.getElementById("yes").onclick=()=>{
+location.href="letter.html";
 };
-
-/* letter */
-document.getElementById("env").onclick=()=>{
-const l=document.getElementById("letter");
-l.style.maxHeight=l.style.maxHeight?"":"2000px";
-};
-
-/* heart */
-const heartBox=document.getElementById("heartContainer");
-const heartIcon=document.getElementById("heartShape");
-const heartImg=document.getElementById("heartImage");
-let opened=false;
-
-heartBox.onclick=()=>{
-if(opened) return;
-opened=true;
-heartIcon.style.display="none";
-sprinkle();
-setTimeout(()=>{
-heartImg.style.display="block";
-heartImg.classList.add("heartbeat");
-heartImg.animate(
-[{transform:"scale(0.85)",opacity:0},{transform:"scale(1)",opacity:1}],
-{duration:900,easing:"ease-out"}
-);
-},550);
-};
-
-function sprinkle(){
-const count=window.innerWidth<600?18:26;
-for(let i=0;i<count;i++){
-const g=document.createElement("span");
-g.textContent="✨";
-g.style.position="fixed";
-g.style.left=Math.random()*100+"vw";
-g.style.top="45vh";
-g.style.fontSize="1.1rem";
-g.style.pointerEvents="none";
-g.style.animation=`sparkleFall ${1.2+Math.random()}s ease-out forwards`;
-document.body.appendChild(g);
-setTimeout(()=>g.remove(),1600);
-}
-}
 </script>
 
 </body>
 </html>
+
