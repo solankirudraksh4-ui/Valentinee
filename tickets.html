@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Final Gift 💝</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Sacramento',cursive;
+min-height:100vh;
+background:#ffd1dc;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+overflow:hidden;
+}
+
+.container{
+max-width:900px;
+padding:20px;
+}
+
+/* TICKETS GRID */
+.tickets{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:25px;
+margin-bottom:30px;
+}
+
+/* SINGLE TICKET */
+.ticket{
+background:linear-gradient(135deg,#ffb6c6,#ff8fa6);
+color:#7a1f33;
+border-radius:18px;
+padding:22px;
+position:relative;
+box-shadow:0 0 12px rgba(255,120,150,0.6);
+overflow:hidden;
+animation:glow 2.5s ease-in-out infinite;
+}
+
+/* GLOW EFFECT */
+@keyframes glow{
+0%{box-shadow:0 0 10px rgba(255,120,150,0.4);}
+50%{box-shadow:0 0 20px rgba(255,120,150,0.9);}
+100%{box-shadow:0 0 10px rgba(255,120,150,0.4);}
+}
+
+/* SIDE CUTS */
+.ticket::before,
+.ticket::after{
+content:"";
+position:absolute;
+top:50%;
+width:26px;
+height:26px;
+background:#ffd1dc;
+border-radius:50%;
+transform:translateY(-50%);
+}
+
+.ticket::before{ left:-13px; }
+.ticket::after{ right:-13px; }
+
+/* DOTTED PERFORATION */
+.perf{
+position:absolute;
+top:0;
+bottom:0;
+left:50%;
+border-left:2px dashed rgba(255,255,255,0.7);
+}
+
+/* SERIAL NUMBER */
+.serial{
+position:absolute;
+top:10px;
+right:14px;
+font-size:0.95rem;
+letter-spacing:1.5px;
+opacity:0.85;
+}
+
+/* TEXT */
+.small{
+font-size:1.1rem;
+letter-spacing:1px;
+opacity:0.8;
+margin-bottom:6px;
+}
+
+.title{
+font-size:1.9rem;
+margin-bottom:10px;
+}
+
+.desc{
+font-size:1.3rem;
+line-height:1.7;
+}
+
+/* CONTINUE BUTTON */
+button{
+margin-top:15px;
+padding:12px 40px;
+border-radius:30px;
+border:none;
+background:#f6b1c3;
+color:#7a1f33;
+font-size:1.4rem;
+font-family:'Sacramento',cursive;
+cursor:pointer;
+}
+
+/* HEART RAIN */
+.heart{
+position:fixed;
+top:-10px;
+font-size:22px;
+animation:fall linear forwards;
+pointer-events:none;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh);opacity:0;}
+}
+
+/* MOBILE */
+@media (max-width:600px){
+.tickets{
+grid-template-columns:1fr;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="tickets">
+
+<div class="ticket">
+<div class="serial" data-serial="VD-001"></div>
+<div class="perf"></div>
+<div class="small">FREE TICKET FOR</div>
+<div class="title">HUGS 🫂 🎟</div>
+<div class="desc">
+unlimited hugs<br>
+expires: never
+</div>
+</div>
+
+<div class="ticket">
+<div class="serial" data-serial="VD-002"></div>
+<div class="perf"></div>
+<div class="small">FREE TICKET FOR</div>
+<div class="title">MAALKIN SPECIAL 🎟</div>
+<div class="desc">
+whatever maalkin says,<br>
+I'll follow 🫡<br>
+expires: never
+</div>
+</div>
+
+<div class="ticket">
+<div class="serial" data-serial="VD-003"></div>
+<div class="perf"></div>
+<div class="small">FREE TICKET FOR</div>
+<div class="title">KISSES 💋😘 🎟</div>
+<div class="desc">
+infinite kisses for<br>
+maalkin<br>
+expires: never
+</div>
+</div>
+
+<div class="ticket">
+<div class="serial" data-serial="VD-004"></div>
+<div class="perf"></div>
+<div class="small">FREE TICKET FOR</div>
+<div class="title">ALWAYS AVAILABLE 🎟</div>
+<div class="desc">
+this slave of yours will always<br>
+be available for you 😤<br>
+expires: never
+</div>
+</div>
+
+</div>
+
+<button onclick="goNext()">Continue 💗</button>
+
+</div>
+
+<script>
+/* SERIAL AUTO TYPE */
+document.querySelectorAll(".serial").forEach((el,idx)=>{
+const text="#"+el.dataset.serial;
+let i=0;
+setTimeout(()=>{
+const timer=setInterval(()=>{
+el.innerHTML+=text[i];
+i++;
+if(i>=text.length) clearInterval(timer);
+},70);
+},idx*300);
+});
+
+/* HEART RAIN */
+const hearts=["🩷","🫶","💝","💖","💕","💞","💓","💗","💘"];
+
+function createHeart(){
+const h=document.createElement("div");
+h.className="heart";
+h.innerText=hearts[Math.floor(Math.random()*hearts.length)];
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(2+Math.random()*2)+"s";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),4000);
+}
+
+function goNext(){
+for(let i=0;i<35;i++){
+setTimeout(createHeart,i*90);
+}
+setTimeout(()=>location.href="moment.html",2200);
+}
+</script>
+
+</body>
+</html>
