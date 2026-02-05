@@ -5,21 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Special Messages 💝</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Righteous&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
 
 <style>
 body{
-font-family:'DM Sans',sans-serif;
+font-family:'Sacramento',cursive;
 background:linear-gradient(135deg,#FFE5F1,#FFF5E4);
 min-height:100vh;
 padding:20px;
 color:#5A4A4A;
 }
 
-.container{max-width:650px;margin:auto;}
+.container{
+max-width:650px;
+margin:auto;
+}
+
 h1{
-font-family:'Righteous',cursive;
-color:#FF6B9D;
+font-size:2.6rem;
 text-align:center;
 margin-bottom:30px;
 }
@@ -28,7 +31,7 @@ margin-bottom:30px;
 background:white;
 border-radius:20px;
 padding:25px;
-box-shadow:0 10px 30px rgba(0,0,0,.1);
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
 margin-bottom:20px;
 }
 
@@ -37,7 +40,8 @@ width:100%;
 border:none;
 border-radius:15px;
 padding:16px;
-font-size:1.1rem;
+font-size:1.6rem;
+font-family:'Sacramento',cursive;
 background:linear-gradient(135deg,#FF8FAB,#FF6B9D);
 color:white;
 cursor:pointer;
@@ -49,26 +53,74 @@ margin-top:15px;
 background:#FFFEF9;
 border-radius:15px;
 padding:20px;
-font-size:1.05rem;
-line-height:1.7;
+font-size:1.45rem;
+line-height:1.8;
 }
 
-.message.show{display:block;}
+.message.show{
+display:block;
+}
+
+.next{
+margin-top:40px;
+text-align:center;
+}
 </style>
 </head>
 
 <body>
+
 <div class="container">
 <h1>💝 Special Messages For You</h1>
 
-<div class="card"><button class="btn" onclick="toggle(1)">Surprise #1 💝</button><div class="message" id="m1">You make me smile even on the hardest days.</div></div>
-<div class="card"><button class="btn" onclick="toggle(2)">Surprise #2 ✨</button><div class="message" id="m2">Seeing your name lights up my day.</div></div>
-<div class="card"><button class="btn" onclick="toggle(3)">Surprise #3 🌟</button><div class="message" id="m3">I cherish every little thing about you.</div></div>
-<div class="card"><button class="btn" onclick="toggle(4)">Surprise #4 💕</button><div class="message" id="m4">Being with you feels like home.</div></div>
-<div class="card"><button class="btn" onclick="toggle(5)">Surprise #5 🎈</button><div class="message" id="m5">Grateful for every moment together.</div></div>
-<div class="card"><button class="btn" onclick="toggle(6)">Surprise #6 💭</button><div class="message" id="m6">Excited for our future together 🥂</div></div>
+<div class="card">
+<button class="btn" onclick="toggle(1)">Surprise #1 💝</button>
+<div class="message" id="m1">
+You know what I love most about you?
+The way you make me smile even on the toughest days.
+</div>
+</div>
 
-<div style="text-align:center;margin-top:40px;">
+<div class="card">
+<button class="btn" onclick="toggle(2)">Surprise #2 ✨</button>
+<div class="message" id="m2">
+Every time I see your name pop up,
+my heart skips a beat.
+</div>
+</div>
+
+<div class="card">
+<button class="btn" onclick="toggle(3)">Surprise #3 🌟</button>
+<div class="message" id="m3">
+I appreciate all the little things you do
+and how you always make me laugh.
+</div>
+</div>
+
+<div class="card">
+<button class="btn" onclick="toggle(4)">Surprise #4 💕</button>
+<div class="message" id="m4">
+Being with you feels like home —
+comfortable, safe, and warm.
+</div>
+</div>
+
+<div class="card">
+<button class="btn" onclick="toggle(5)">Surprise #5 🎈</button>
+<div class="message" id="m5">
+I’m grateful for every moment we share.
+</div>
+</div>
+
+<div class="card">
+<button class="btn" onclick="toggle(6)">Surprise #6 💭</button>
+<div class="message" id="m6">
+I’m excited for all the memories
+we’re yet to make together.
+</div>
+</div>
+
+<div class="next">
 <button class="btn" onclick="location.href='moment.html'">
 Our Moment 💖
 </button>
@@ -80,5 +132,6 @@ function toggle(n){
 document.getElementById("m"+n).classList.toggle("show");
 }
 </script>
+
 </body>
 </html>
