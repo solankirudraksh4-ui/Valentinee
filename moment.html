@@ -18,31 +18,39 @@ justify-content:center;
 height:100vh;
 font-family:'Sacramento',cursive;
 overflow:hidden;
+text-align:center;
 }
 
 #content{
-text-align:center;
 transition:opacity .6s ease, transform .6s ease;
 }
 
 h1{
 font-size:2.8rem;
-margin-bottom:20px;
+margin-bottom:15px;
+}
+
+img{
+width:180px;
+max-width:70vw;
+border-radius:50%;
+margin:20px 0;
+box-shadow:0 0 30px rgba(255,105,150,.5);
 }
 
 p{
-font-size:1.5rem;
-line-height:1.6;
+font-size:1.6rem;
+line-height:1.7;
 }
 
 button{
-margin-top:28px;
+margin-top:30px;
 padding:14px 40px;
 border:none;
 border-radius:30px;
 background:#ff6b9d;
 color:white;
-font-size:1.4rem;
+font-size:1.5rem;
 font-family:'Sacramento',cursive;
 cursor:pointer;
 }
@@ -56,8 +64,8 @@ pointer-events:none;
 }
 
 @keyframes explode{
-0%{opacity:1;transform:translateY(0) scale(1);}
-100%{opacity:0;transform:translateY(-200px) scale(2);}
+0%{opacity:1;transform:scale(1);}
+100%{opacity:0;transform:scale(2);}
 }
 </style>
 </head>
@@ -65,43 +73,46 @@ pointer-events:none;
 <body>
 
 <div id="content">
-  <h1>Our Moment 💖</h1>
-  <p>If you’re smiling right now,<br>that’s all I wanted.</p>
+<h1>Our Moment 💖</h1>
 
-  <button onclick="replay()">Replay 🔁</button>
+<img src="heart.jpg" alt="Heart">
+
+<p>
+If you’re smiling right now,<br>
+that’s all I ever wanted.
+</p>
+
+<button onclick="replay()">Replay 🔁</button>
 </div>
 
 <script>
 const fireworks=["🎆","🎇","✨","💥","💖"];
 
 function launchFireworks(){
-  for(let i=0;i<40;i++){
-    setTimeout(()=>{
-      const f=document.createElement("div");
-      f.className="firework";
-      f.innerText=fireworks[Math.floor(Math.random()*fireworks.length)];
-      f.style.left=Math.random()*100+"vw";
-      f.style.top=Math.random()*100+"vh";
-      document.body.appendChild(f);
-      setTimeout(()=>f.remove(),2500);
-    },i*70);
-  }
+for(let i=0;i<40;i++){
+setTimeout(()=>{
+const f=document.createElement("div");
+f.className="firework";
+f.innerText=fireworks[Math.floor(Math.random()*fireworks.length)];
+f.style.left=Math.random()*100+"vw";
+f.style.top=Math.random()*100+"vh";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),2500);
+},i*70);
+}
 }
 
 function replay(){
-  // fade out content
-  const content=document.getElementById("content");
-  content.style.opacity="0";
-  content.style.transform="scale(0.95)";
+const content=document.getElementById("content");
+content.style.opacity="0";
+content.style.transform="scale(0.95)";
 
-  // fireworks
-  launchFireworks();
+launchFireworks();
 
-  // bring content back
-  setTimeout(()=>{
-    content.style.opacity="1";
-    content.style.transform="scale(1)";
-  },2600);
+/* after fireworks → go to index */
+setTimeout(()=>{
+location.href="index.html";
+},2800);
 }
 </script>
 
