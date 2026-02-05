@@ -47,12 +47,7 @@ width:260px;
 height:180px;
 margin:0 auto;
 position:relative;
-cursor:pointer;
 transition:transform 0.3s ease;
-}
-
-.envelope:hover{
-transform:scale(1.05);
 }
 
 .envelope-body{
@@ -93,8 +88,9 @@ align-items:center;
 justify-content:center;
 font-size:1.4rem;
 color:white;
-z-index:4;
+z-index:5;
 box-shadow:0 5px 15px rgba(0,0,0,.25);
+cursor:pointer;
 animation:sealBeat 1.2s ease-out;
 }
 
@@ -108,7 +104,7 @@ animation:sealBeat 1.2s ease-out;
 /* LETTER */
 .letter{
 position:absolute;
-bottom:-100%;
+bottom:-120%;
 left:50%;
 transform:translateX(-50%);
 width:90%;
@@ -179,12 +175,11 @@ max-width:220px;
 <div class="envelope" id="envelope">
   <div class="envelope-body">
     <div class="envelope-flap"></div>
-    <div class="seal">❤️</div>
+    <div class="seal" id="seal">❤️</div>
 
     <div class="letter">
       <div class="letter-content" id="text"></div>
     </div>
-
   </div>
 </div>
 
@@ -196,11 +191,12 @@ A Little Surprise 🎟💗
 </div>
 
 <script>
-const envelope=document.getElementById("envelope");
-const textBox=document.getElementById("text");
-const nextBtn=document.getElementById("next");
+const envelope = document.getElementById("envelope");
+const seal = document.getElementById("seal");
+const textBox = document.getElementById("text");
+const nextBtn = document.getElementById("next");
 
-const letterText=`I don’t really know the perfect way
+const letterText = `I don’t really know the perfect way
 to start this,
 but I wanted to write this myself.
 
@@ -215,23 +211,32 @@ feels right.
 
 — Rakshh ❤️`;
 
-let i=0;
-let opened=false;
+let i = 0;
+let opened = false;
 
-envelope.addEventListener("click",()=>{
-if(opened) return;
-opened=true;
+/* HARD RESET (prevents cache bugs) */
+window.addEventListener("load", () => {
+  textBox.innerHTML = "";
+  nextBtn.style.display = "none";
+  envelope.classList.remove("open");
+});
 
-envelope.classList.add("open");
+/* ONLY HEART IS CLICKABLE */
+seal.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if (opened) return;
+  opened = true;
 
-const timer=setInterval(()=>{
-textBox.innerHTML+=letterText[i];
-i++;
-if(i>=letterText.length){
-clearInterval(timer);
-nextBtn.style.display="inline-block";
-}
-},55);
+  envelope.classList.add("open");
+
+  const timer = setInterval(() => {
+    textBox.innerHTML += letterText[i];
+    i++;
+    if (i >= letterText.length) {
+      clearInterval(timer);
+      nextBtn.style.display = "inline-block";
+    }
+  }, 55);
 });
 </script>
 
