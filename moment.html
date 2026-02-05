@@ -3,142 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Moment 💗</title>
+<title>Our Moment 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
 
 <style>
 body{
 margin:0;
-padding:40px 20px;
 background:#fff0f6;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+height:100vh;
 font-family:'Sacramento',cursive;
-text-align:center;
 overflow:hidden;
 }
 
-h2{
-font-size:2.6rem;
-color:#ff5d8f;
-margin-bottom:10px;
+#content{
+text-align:center;
+transition:opacity .6s ease, transform .6s ease;
 }
 
-/* heart */
-.heart{
-position:relative;
-width:min(280px,75vw);
-aspect-ratio:1;
-margin:50px auto 20px;
-
-/* image positioning */
-background-image:url('heart.jpg');
-background-repeat:no-repeat;
-background-size:110%;
-background-position:50% 30%;
-
-/* heart mask */
-mask:url('https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg') center/contain no-repeat;
--webkit-mask:url('https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg') center/contain no-repeat;
-
-/* glow */
-box-shadow:
-0 0 25px rgba(255,93,143,0.35),
-0 0 50px rgba(255,93,143,0.2);
-
-animation:heartbeat 2.6s infinite ease-in-out, glowPulse 2.6s infinite ease-in-out;
+h1{
+font-size:2.8rem;
+margin-bottom:20px;
 }
 
-/* vignette */
-.heart::after{
-content:"";
-position:absolute;
-inset:0;
-background:radial-gradient(
-circle at center,
-rgba(0,0,0,0) 55%,
-rgba(0,0,0,0.25) 100%
-);
-pointer-events:none;
-mask:inherit;
--webkit-mask:inherit;
+p{
+font-size:1.5rem;
+line-height:1.6;
 }
 
-@keyframes heartbeat{
-0%,100%{transform:scale(1);}
-50%{transform:scale(1.05);}
+button{
+margin-top:28px;
+padding:14px 40px;
+border:none;
+border-radius:30px;
+background:#ff6b9d;
+color:white;
+font-size:1.4rem;
+font-family:'Sacramento',cursive;
+cursor:pointer;
 }
 
-@keyframes glowPulse{
-0%,100%{
-box-shadow:
-0 0 25px rgba(255,93,143,0.35),
-0 0 50px rgba(255,93,143,0.2);
-}
-50%{
-box-shadow:
-0 0 35px rgba(255,93,143,0.5),
-0 0 70px rgba(255,93,143,0.3);
-}
-}
-
-/* ending line */
-.ending-line{
-margin-top:30px;
-font-size:1.6rem;
-opacity:0;
-animation:fadeInSoft 2s ease forwards;
-animation-delay:1.8s;
-}
-
-@keyframes fadeInSoft{
-from{opacity:0;transform:translateY(10px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-/* glitter */
-.sparkle{
+/* FIREWORKS */
+.firework{
 position:fixed;
-font-size:1.2rem;
+font-size:24px;
+animation:explode 2.5s linear forwards;
 pointer-events:none;
-animation:fall 1.6s forwards;
 }
 
-@keyframes fall{
-to{transform:translateY(200px) rotate(360deg);opacity:0;}
-}
-
-/* mobile safety */
-@media (max-width:480px){
-.heart{
-background-size:115%;
-background-position:50% 25%;
-}
+@keyframes explode{
+0%{opacity:1;transform:translateY(0) scale(1);}
+100%{opacity:0;transform:translateY(-200px) scale(2);}
 }
 </style>
 </head>
 
 <body>
 
-<h2>Our Moment 💗</h2>
+<div id="content">
+  <h1>Our Moment 💖</h1>
+  <p>If you’re smiling right now,<br>that’s all I wanted.</p>
 
-<div class="heart"></div>
-
-<p class="ending-line">
-If you’re smiling right now, that’s all I wanted.
-</p>
+  <button onclick="replay()">Replay 🔁</button>
+</div>
 
 <script>
-const count=window.innerWidth<600?18:26;
-for(let i=0;i<count;i++){
-setTimeout(()=>{
-const s=document.createElement("div");
-s.className="sparkle";
-s.textContent="✨";
-s.style.left=Math.random()*100+"vw";
-s.style.top="40vh";
-document.body.appendChild(s);
-setTimeout(()=>s.remove(),1600);
-},i*80);
+const fireworks=["🎆","🎇","✨","💥","💖"];
+
+function launchFireworks(){
+  for(let i=0;i<40;i++){
+    setTimeout(()=>{
+      const f=document.createElement("div");
+      f.className="firework";
+      f.innerText=fireworks[Math.floor(Math.random()*fireworks.length)];
+      f.style.left=Math.random()*100+"vw";
+      f.style.top=Math.random()*100+"vh";
+      document.body.appendChild(f);
+      setTimeout(()=>f.remove(),2500);
+    },i*70);
+  }
+}
+
+function replay(){
+  // fade out content
+  const content=document.getElementById("content");
+  content.style.opacity="0";
+  content.style.transform="scale(0.95)";
+
+  // fireworks
+  launchFireworks();
+
+  // bring content back
+  setTimeout(()=>{
+    content.style.opacity="1";
+    content.style.transform="scale(1)";
+  },2600);
 }
 </script>
 
