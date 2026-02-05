@@ -23,7 +23,6 @@ margin:0 auto;
 padding:25px 18px 50px;
 }
 
-/* TITLE */
 h1{
 font-family:'Sacramento',cursive;
 font-size:2.4rem;
@@ -31,25 +30,20 @@ text-align:center;
 margin-bottom:30px;
 }
 
-/* TICKETS GRID */
 .tickets{
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:25px;
 }
 
-/* SINGLE TICKET */
 .ticket{
 background:linear-gradient(135deg,#ffb6c6,#ff8fa6);
-color:#7a1f33;
 border-radius:20px;
 padding:24px;
 position:relative;
 box-shadow:0 0 12px rgba(255,120,150,0.5);
-overflow:hidden;
 }
 
-/* SIDE CUTS */
 .ticket::before,
 .ticket::after{
 content:"";
@@ -61,11 +55,9 @@ background:#ffd1dc;
 border-radius:50%;
 transform:translateY(-50%);
 }
+.ticket::before{left:-13px;}
+.ticket::after{right:-13px;}
 
-.ticket::before{ left:-13px; }
-.ticket::after{ right:-13px; }
-
-/* DOTTED LINE */
 .perf{
 position:absolute;
 top:0;
@@ -74,37 +66,26 @@ left:50%;
 border-left:2px dashed rgba(255,255,255,0.7);
 }
 
-/* SERIAL */
 .serial{
 position:absolute;
 top:10px;
 right:14px;
 font-size:11px;
-letter-spacing:1px;
-opacity:0.8;
+opacity:.8;
 }
 
-/* TEXT */
-.small{
-font-size:12px;
-letter-spacing:1px;
-opacity:0.8;
-margin-bottom:6px;
-}
-
+.small{font-size:12px;letter-spacing:1px;}
 .title{
 font-family:'Sacramento',cursive;
 font-size:26px;
-margin-bottom:10px;
+margin:10px 0;
 }
-
 .desc{
 font-family:'Sacramento',cursive;
 font-size:18px;
 line-height:1.7;
 }
 
-/* BUTTON */
 .next-btn{
 margin:40px auto 0;
 display:block;
@@ -116,81 +97,51 @@ color:white;
 font-size:1.5rem;
 font-family:'Sacramento',cursive;
 cursor:pointer;
-box-shadow:0 6px 18px rgba(255,105,135,0.4);
 }
 
-/* MOBILE */
 @media(max-width:600px){
-.tickets{
-grid-template-columns:1fr;
-}
+.tickets{grid-template-columns:1fr;}
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
-
 <h1>Your Special Tickets 🎟💗</h1>
 
 <div class="tickets">
-
 <div class="ticket">
-<div class="serial">#VD-001</div>
-<div class="perf"></div>
+<div class="serial">#VD-001</div><div class="perf"></div>
 <div class="small">FREE TICKET FOR</div>
 <div class="title">HUGS 🫂</div>
-<div class="desc">
-unlimited hugs<br>
-expires: never
-</div>
+<div class="desc">unlimited hugs<br>expires: never</div>
 </div>
 
 <div class="ticket">
-<div class="serial">#VD-002</div>
-<div class="perf"></div>
+<div class="serial">#VD-002</div><div class="perf"></div>
 <div class="small">FREE TICKET FOR</div>
 <div class="title">MAALKIN SPECIAL</div>
-<div class="desc">
-whatever maalkin says,<br>
-I’ll follow 😌<br>
-expires: never
-</div>
+<div class="desc">whatever maalkin says,<br>I’ll follow 😌<br>expires: never</div>
 </div>
 
 <div class="ticket">
-<div class="serial">#VD-003</div>
-<div class="perf"></div>
+<div class="serial">#VD-003</div><div class="perf"></div>
 <div class="small">FREE TICKET FOR</div>
 <div class="title">KISSES 💋</div>
-<div class="desc">
-infinite kisses<br>
-just for you 😘<br>
-expires: never
-</div>
+<div class="desc">infinite kisses<br>just for you 😘<br>expires: never</div>
 </div>
 
 <div class="ticket">
-<div class="serial">#VD-004</div>
-<div class="perf"></div>
+<div class="serial">#VD-004</div><div class="perf"></div>
 <div class="small">FREE TICKET FOR</div>
 <div class="title">ALWAYS AVAILABLE</div>
-<div class="desc">
-this idiot is always<br>
-here for you 🤍<br>
-expires: never
+<div class="desc">always here for you 🤍<br>expires: never</div>
 </div>
 </div>
 
-</div>
-
-<!-- ✅ MOMENT BUTTON -->
-<button class="next-btn" onclick="location.href='moment.html'">
-Our Moment 💖
+<button class="next-btn" onclick="location.href='special.html'">
+One More Thing 💝
 </button>
-
 </div>
-
 </body>
 </html>
