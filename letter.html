@@ -47,7 +47,6 @@ width:260px;
 height:180px;
 margin:0 auto;
 position:relative;
-transition:transform 0.3s ease;
 }
 
 .envelope-body{
@@ -101,7 +100,7 @@ animation:sealBeat 1.2s ease-out;
 100%{transform:translate(-50%,-50%) scale(1);}
 }
 
-/* LETTER */
+/* LETTER (initial hidden state) */
 .letter{
 position:absolute;
 bottom:-120%;
@@ -121,7 +120,7 @@ transform:rotateX(180deg);
 }
 
 .envelope.open .letter{
-bottom:8%;
+bottom:6%;
 }
 
 .envelope.open .seal{
@@ -177,7 +176,7 @@ max-width:220px;
     <div class="envelope-flap"></div>
     <div class="seal" id="seal">❤️</div>
 
-    <div class="letter">
+    <div class="letter" id="letterBox">
       <div class="letter-content" id="text"></div>
     </div>
   </div>
@@ -194,6 +193,7 @@ A Little Surprise 🎟💗
 const envelope = document.getElementById("envelope");
 const seal = document.getElementById("seal");
 const textBox = document.getElementById("text");
+const letterBox = document.getElementById("letterBox");
 const nextBtn = document.getElementById("next");
 
 const letterText = `I don’t really know the perfect way
@@ -214,14 +214,14 @@ feels right.
 let i = 0;
 let opened = false;
 
-/* HARD RESET (prevents cache bugs) */
+/* HARD RESET */
 window.addEventListener("load", () => {
   textBox.innerHTML = "";
   nextBtn.style.display = "none";
   envelope.classList.remove("open");
 });
 
-/* ONLY HEART IS CLICKABLE */
+/* HEART CLICK */
 seal.addEventListener("click", (e) => {
   e.stopPropagation();
   if (opened) return;
@@ -232,8 +232,20 @@ seal.addEventListener("click", (e) => {
   const timer = setInterval(() => {
     textBox.innerHTML += letterText[i];
     i++;
+
     if (i >= letterText.length) {
       clearInterval(timer);
+
+      /* 🔑 FINAL FIX: SHOW FULL LETTER */
+      letterBox.style.position = "relative";
+      letterBox.style.bottom = "auto";
+      letterBox.style.transform = "translateX(-50%)";
+
+      letterBox.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
       nextBtn.style.display = "inline-block";
     }
   }, 55);
