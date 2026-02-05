@@ -22,11 +22,10 @@ body{
 font-family:'DM Sans',sans-serif;
 background:linear-gradient(135deg,var(--soft),#FFF5E4);
 min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
 padding:20px;
 color:var(--text);
+display:flex;
+justify-content:center;
 }
 
 .wrapper{
@@ -58,21 +57,23 @@ position:relative;
 overflow:hidden;
 }
 
-/* FLAP */
 .envelope-flap{
 position:absolute;
 top:0;
-left:0;
 width:100%;
 height:50%;
 background:linear-gradient(135deg,var(--red),#FF8FAB);
 clip-path:polygon(0 0,100% 0,50% 100%);
 transform-origin:top;
 transition:transform 0.6s ease;
-z-index:3;
+z-index:2;
 }
 
-/* HEART SEAL */
+.envelope.open .envelope-flap{
+transform:rotateX(180deg);
+}
+
+/* HEART */
 .seal{
 position:absolute;
 top:50%;
@@ -87,10 +88,10 @@ align-items:center;
 justify-content:center;
 font-size:1.4rem;
 color:white;
-z-index:5;
 box-shadow:0 5px 15px rgba(0,0,0,.25);
 cursor:pointer;
 animation:sealBeat 1.2s ease-out;
+z-index:3;
 }
 
 @keyframes sealBeat{
@@ -100,48 +101,33 @@ animation:sealBeat 1.2s ease-out;
 100%{transform:translate(-50%,-50%) scale(1);}
 }
 
-/* LETTER (initial hidden state) */
-.letter{
-position:absolute;
-bottom:-120%;
-left:50%;
-transform:translateX(-50%);
-width:90%;
-background:var(--cream);
-border-radius:10px;
-padding:24px 18px;
-transition:bottom 0.6s ease;
-z-index:2;
-}
-
-/* OPEN STATE */
-.envelope.open .envelope-flap{
-transform:rotateX(180deg);
-}
-
-.envelope.open .letter{
-bottom:6%;
-}
-
-.envelope.open .seal{
+/* LETTER PAPER */
+.paper{
 display:none;
+margin:30px auto 0;
+background:var(--cream);
+border-radius:14px;
+padding:28px 22px;
+max-width:320px;
+box-shadow:0 12px 30px rgba(0,0,0,0.12);
 }
 
-/* LETTER CONTENT */
-.letter-content{
+.paper.show{
+display:block;
+}
+
+/* TEXT */
+#text{
 font-family:'Sacramento',cursive;
-max-width:240px;
-margin:0 auto;
 font-size:1.35rem;
 line-height:2;
 white-space:pre-line;
-word-break:break-word;
 }
 
-/* NEXT BUTTON */
+/* BUTTON */
 #next{
 display:none;
-margin-top:22px;
+margin-top:25px;
 padding:12px 38px;
 border:none;
 border-radius:30px;
@@ -158,9 +144,8 @@ cursor:pointer;
 width:220px;
 height:160px;
 }
-.letter-content{
+#text{
 font-size:1.25rem;
-max-width:220px;
 }
 }
 </style>
@@ -175,14 +160,12 @@ max-width:220px;
   <div class="envelope-body">
     <div class="envelope-flap"></div>
     <div class="seal" id="seal">❤️</div>
-
-    <div class="letter" id="letterBox">
-      <div class="letter-content" id="text"></div>
-    </div>
   </div>
 </div>
 
-<p style="margin-top:15px;font-size:1rem;">Tap the heart</p>
+<div class="paper" id="paper">
+  <div id="text"></div>
+</div>
 
 <button id="next" onclick="location.href='tickets.html'">
 A Little Surprise 🎟💗
@@ -190,10 +173,10 @@ A Little Surprise 🎟💗
 </div>
 
 <script>
-const envelope = document.getElementById("envelope");
 const seal = document.getElementById("seal");
+const envelope = document.getElementById("envelope");
+const paper = document.getElementById("paper");
 const textBox = document.getElementById("text");
-const letterBox = document.getElementById("letterBox");
 const nextBtn = document.getElementById("next");
 
 const letterText = `I don’t really know the perfect way
@@ -214,39 +197,21 @@ feels right.
 let i = 0;
 let opened = false;
 
-/* HARD RESET */
-window.addEventListener("load", () => {
-  textBox.innerHTML = "";
-  nextBtn.style.display = "none";
-  envelope.classList.remove("open");
-});
-
-/* HEART CLICK */
-seal.addEventListener("click", (e) => {
-  e.stopPropagation();
-  if (opened) return;
+seal.addEventListener("click", () => {
+  if(opened) return;
   opened = true;
 
   envelope.classList.add("open");
+  paper.classList.add("show");
 
   const timer = setInterval(() => {
     textBox.innerHTML += letterText[i];
     i++;
 
-    if (i >= letterText.length) {
+    if(i >= letterText.length){
       clearInterval(timer);
-
-      /* 🔑 FINAL FIX: SHOW FULL LETTER */
-      letterBox.style.position = "relative";
-      letterBox.style.bottom = "auto";
-      letterBox.style.transform = "translateX(-50%)";
-
-      letterBox.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
       nextBtn.style.display = "inline-block";
+      paper.scrollIntoView({behavior:"smooth"});
     }
   }, 55);
 });
